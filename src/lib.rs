@@ -7,11 +7,10 @@ pub mod lang_items;
 
 #[no_mangle]
 /// Entry point for the kernel module
-pub fn init() -> u8 {
+pub fn init_module() -> u8 {
     return 0;
 }
 
 #[no_mangle]
 /// Exit point for the kernel module
-pub fn cleanup() {}
-
+pub fn cleanup_module() {}
