@@ -12,5 +12,10 @@ all modules:
 	cp "Makefile.in" "${BUILD_DIRECTORY}/Makefile"
 	@$(MAKE) -C /lib/modules/$(shell uname -r)/build M=${PWD}/${BUILD_DIRECTORY} modules
 
+test: all
+	sudo insmod ${BUILD_DIRECTORY}/${MODULE_NAME}.ko
+	sudo rmmod ${MODULE_NAME}
+	dmesg -H | tail
+
 clean:
 	cargo clean
