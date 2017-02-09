@@ -1,8 +1,8 @@
 //! A simple kernel module in Rust
-#![no_std]
-#![allow(unused_features)]
-#![deny(missing_docs, warnings)]
 #![feature(lang_items, core_str_ext)]
+#![deny(missing_docs, warnings)]
+#![allow(unused_features)]
+#![no_std]
 
 #[macro_use]
 mod print;
