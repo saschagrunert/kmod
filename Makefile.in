@@ -1,0 +1,15 @@
+obj-m := ${MODULE_NAME}.o
+RUSTLIB := lib${MODULE_NAME}.a
+${MODULE_NAME}-objs := $(patsubst %.c,%.o,${CFILES}) ${RUSTLIB}
+
+EXTRA_LDFLAGS += --gc-sections --entry=init_module --undefined=cleanup_module
+EXTRA_LDFLAGS += $(if ${RELEASE},--strip-all)
+src := ${PWD}
+
+# Adapt the file paths
+CFILES := $(foreach filepath, ${CFILES}, ${src}/$(filepath))
+RUSTFILES := $(foreach filepath, ${RUSTFILES}, ${src}/$(filepath))
+
+$(obj)/${RUSTLIB}: ${RUSTFILES} FORCE
+	cd ${src} && cargo build $(if ${RELEASE},--release) $(if ${V},--verbose)
+	cp ${src}/target/$(if ${RELEASE},release,debug)/${RUSTLIB} $(obj)

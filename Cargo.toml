@@ -1,0 +1,7 @@
+[package]
+name = "kmod"
+version = "0.1.0"
+authors = ["Sascha Grunert <mail@saschagrunert.de>"]
+
+[lib]
+crate-type = ["staticlib"]
