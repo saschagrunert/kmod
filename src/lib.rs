@@ -7,7 +7,7 @@ pub mod lang_items;
 
 #[no_mangle]
 /// Entry point for the kernel module
-pub fn init_module() -> u8 {
+pub fn init_module() -> i32 {
     return 0;
 }
 
