@@ -11,5 +11,5 @@ CFILES := $(foreach filepath, ${CFILES}, ${src}/$(filepath))
 RUSTFILES := $(foreach filepath, ${RUSTFILES}, ${src}/$(filepath))
 
 $(obj)/${RUSTLIB}: ${RUSTFILES} FORCE
-	cd ${src} && cargo build $(if ${RELEASE},--release) $(if ${V},--verbose)
+	cd ${src} && cargo rustc $(if ${RELEASE},--release) $(if ${V},--verbose) -- ${RUSTCFLAGS}
 	cp ${src}/target/$(if ${RELEASE},release,debug)/${RUSTLIB} $(obj)

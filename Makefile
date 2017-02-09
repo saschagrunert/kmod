@@ -2,6 +2,7 @@ export MODULE_NAME := kmod
 export BUILD_DIRECTORY := target/kernel
 export CFILES := $(wildcard src/*.c)
 export RUSTFILES := $(wildcard src/*.rs)
+export RUSTCFLAGS := -O -C code-model=kernel -C relocation-model=static
 
 ifneq "$(VERBOSE)" "1"
 .SILENT:
