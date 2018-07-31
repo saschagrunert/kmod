@@ -13,13 +13,11 @@ pub extern "C" fn rust_eh_personality() {}
 pub extern "C" fn rust_eh_unwind_resume() {}
 
 #[no_mangle]
-#[lang = "panic_fmt"]
+#[lang = "panic_impl"]
 /// Panic entry function
-pub extern "C" fn rust_begin_panic(_: core::fmt::Arguments, _: &'static str, _: u32) -> ! {
+pub extern "C" fn rust_begin_panic(_info: &core::panic::PanicInfo) -> ! {
     // Try to do a segementation fault
-    unsafe {
-        let _ = *(core::ptr::null::<i32>());
-    }
+    let _ = *(core::ptr::null::<i32>());
     // Loop forever
     loop {}
 }

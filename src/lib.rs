@@ -1,7 +1,6 @@
 //! A simple kernel module in Rust
-#![feature(lang_items, core_str_ext)]
+#![feature(lang_items)]
 #![deny(missing_docs, warnings)]
-#![allow(unused_features)]
 #![no_std]
 
 #[macro_use]
